@@ -1,0 +1,20 @@
+GitHub Pages deployment notes
+=============================
+
+Upload the CONTENTS of this folder to the ROOT of your GitHub repository.
+The repository root must contain:
+
+index.html
+.nojekyll
+src/
+assets/
+
+Then open:
+GitHub repository > Settings > Pages
+Source: Deploy from a branch
+Branch: main
+Folder: / (root)
+Save
+
+Your site will normally appear at:
+https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPOSITORY-NAME/

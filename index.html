@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#050708" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="A cinematic, scroll-synced medical graduation landing page for Mazandaran University of Medical Sciences." />
+  <title>MAZUMS · Medical Graduation 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/hero-poster.webp" fetchpriority="high" />
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <div class="loader__mark"><img src="assets/mazums-mark.svg" alt="" /></div>
+    <div class="loader__copy"><span>MAZUMS · MEDICAL GRADUATION</span><b id="loaderPercent">00</b></div>
+    <div class="loader__track"><i id="loaderTrack"></i></div>
+  </div>
+
+  <canvas class="depth-canvas" id="depthCanvas" aria-hidden="true"></canvas>
+  <canvas class="confetti-canvas" id="confettiCanvas" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="page-vignette" aria-hidden="true"></div>
+
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#cinematic" aria-label="بازگشت به ابتدای صفحه">
+      <img src="assets/mazums-mark.svg" alt="" />
+      <span><b>علوم پزشکی مازندران</b><small>MEDICAL GRADUATION · 2026</small></span>
+    </a>
+    <div class="topbar__right">
+      <span class="topbar__coords">SARI · 36.56°N · 53.06°E</span>
+      <button class="sound" id="soundButton" type="button" aria-pressed="false" aria-label="فعال کردن صدای محیطی"><i></i><i></i><i></i><i></i></button>
+    </div>
+  </header>
+
+  <aside class="rail" aria-label="پیشرفت روایت">
+    <span id="railIndex">00</span>
+    <div class="rail__line"><i id="railFill"></i></div>
+    <span>05</span>
+  </aside>
+
+  <main>
+    <!-- REFERENCE-STYLE CINEMATIC SCRUB HERO -->
+    <section class="cinematic" id="cinematic" aria-label="پیش‌درآمد سینمایی">
+      <div class="cinematic__sticky">
+        <div class="cinematic__ambient" aria-hidden="true"></div>
+
+        <div class="film-card" id="filmCard" aria-hidden="true">
+          <div class="film-card__edge"></div>
+          <video id="heroVideo" muted playsinline preload="auto" poster="assets/hero-poster.webp"></video>
+          <div class="film-card__shine"></div>
+          <div class="film-card__ticks"><span>15 FPS · ALL-I</span><span id="frameReadout">FRAME 000 / 230</span></div>
+        </div>
+
+        <div class="hero-chrome" aria-hidden="true">
+          <span class="hero-chrome__left">A FILM ABOUT BECOMING</span>
+          <span class="hero-chrome__right" id="heroTimecode">00:00:00</span>
+          <div class="hero-chrome__progress"><i id="heroProgress"></i></div>
+        </div>
+
+        <article class="hero-scene hero-scene--intro" data-start="0.00" data-end="0.22">
+          <p class="kicker">01 · ORIGIN</p>
+          <h1>همه‌چیز از یک<br><em>روز معمولی</em> شروع شد.</h1>
+          <p>همین محوطه، همین پنجره‌ها، و تصمیمی که آن روز هنوز نمی‌دانستیم چقدر بزرگ خواهد شد.</p>
+          <span class="scene-note">SCROLL TO MOVE THE FILM</span>
+        </article>
+
+        <article class="hero-scene hero-scene--second" data-start="0.24" data-end="0.46">
+          <p class="kicker">02 · TIME</p>
+          <h2>روزها گذشتند.<br><em>دانش ماند.</em></h2>
+          <p>کلاس، کشیک، امتحان و تمرین؛ تکرارهایی که آرام‌آرام به مهارت تبدیل شدند.</p>
+        </article>
+
+        <article class="hero-scene hero-scene--third" data-start="0.49" data-end="0.72">
+          <p class="kicker">03 · RESPONSIBILITY</p>
+          <h2>تا جایی که علم،<br><em>وزن پیدا کرد.</em></h2>
+          <p>وقتی تصمیم‌ها دیگر روی کاغذ نبودند و روبه‌روی ما یک انسان واقعی قرار داشت.</p>
+        </article>
+
+        <article class="hero-scene hero-scene--fourth" data-start="0.76" data-end="0.98">
+          <p class="kicker">04 · THE OATH</p>
+          <h2>و حالا،<br><em>لحظه‌ی آغاز تعهد.</em></h2>
+          <p>فارغ‌التحصیلی پایان آموزش نیست؛ لحظه‌ای است که مسئولیت، نام و چهره پیدا می‌کند.</p>
+          <a class="ghost-link" href="#campus">ادامه‌ی روایت <span>↓</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="chapter chapter--campus" id="campus" data-chapter="1">
+      <div class="chapter__sticky">
+        <div class="chapter__background chapter__background--campus"></div>
+        <div class="chapter__wash"></div>
+        <div class="chapter__number">01</div>
+        <div class="chapter__content chapter__content--right">
+          <div class="chapter__meta"><span>THE THRESHOLD</span><i></i><b>01</b></div>
+          <h2>ورود به پزشکی،<br><em>ورود به یک مسئولیت طولانی.</em></h2>
+          <p>دانشگاه فقط یک ساختمان نبود. همین محوطه تبدیل شد به جایی برای یاد گرفتن نظم، تحمل، دقت و مواجهه با آینده‌ای که روزبه‌روز واقعی‌تر می‌شد.</p>
+          <div class="chapter__facts"><span><b>ساری</b><small>MAZANDARAN</small></span><span><b>پزشکی</b><small>MEDICINE</small></span><span><b>2026</b><small>GRADUATION</small></span></div>
+        </div>
+        <figure class="memory-card memory-card--campus" data-tilt>
+          <img src="assets/campus-drive-960.webp" alt="نمای دیگری از محوطه دانشگاه علوم پزشکی مازندران" />
+          <figcaption><span>REAL CAMPUS / ARCHIVE</span><b>جایی که مسیر شکل گرفت.</b></figcaption>
+        </figure>
+        <svg class="stethoscope-line" viewBox="0 0 520 520" aria-hidden="true"><path d="M110 58v105c0 94 63 149 151 149s151-55 151-149V58M110 58c-28 0-46 18-46 46s18 46 46 46m302-92c28 0 46 18 46 46s-18 46-46 46M261 312v79c0 49 30 79 77 79h24m0 0a34 34 0 1 0 68 0 34 34 0 0 0-68 0Z" /></svg>
+      </div>
+    </section>
+
+    <section class="chapter chapter--learning" id="learning" data-chapter="2">
+      <div class="chapter__sticky">
+        <div class="chapter__background chapter__background--learning"></div>
+        <div class="chapter__wash"></div>
+        <div class="chapter__number">02</div>
+        <canvas class="helix-canvas" id="helixCanvas" aria-hidden="true"></canvas>
+        <div class="chapter__content chapter__content--left">
+          <div class="chapter__meta"><span>THE MIND</span><i></i><b>02</b></div>
+          <h2>هزاران صفحه،<br><em>برای فهمیدن یک بدن.</em></h2>
+          <p>آناتومی، فیزیولوژی، پاتولوژی و داروشناسی فقط نام درس نبودند. هر کدام قطعه‌ای از تصویری شدند که بعدها کنار تخت بیمار کامل شد.</p>
+          <div class="word-strip"><span>ANATOMY</span><span>PHYSIOLOGY</span><span>PATHOLOGY</span><span>PHARMACOLOGY</span></div>
+        </div>
+        <div class="glass-index" aria-hidden="true"><span>KNOWLEDGE</span><b>02</b><small>MEMORY → INTUITION</small></div>
+      </div>
+    </section>
+
+    <section class="chapter chapter--clinical" id="clinical" data-chapter="3">
+      <div class="chapter__sticky">
+        <div class="chapter__background chapter__background--clinical"></div>
+        <div class="chapter__wash"></div>
+        <div class="surgical-beam surgical-beam--a"></div>
+        <div class="surgical-beam surgical-beam--b"></div>
+        <div class="chapter__number">03</div>
+        <div class="chapter__content chapter__content--right">
+          <div class="chapter__meta"><span>THE WEIGHT OF CARE</span><i></i><b>03</b></div>
+          <h2>در اتاق عمل،<br><em>همه‌چیز واقعی می‌شود.</em></h2>
+          <p>نور سرد، سکوت متمرکز و کار تیمی. اینجا دانسته‌ها باید تبدیل به تصمیم شوند و تصمیم‌ها باید دقیق باشند.</p>
+          <div class="clinical-tags"><span>CARE</span><span>PRECISION</span><span>TEAMWORK</span><span>TRUST</span></div>
+        </div>
+        <div class="monitor" aria-label="نمایش تزئینی علائم حیاتی">
+          <div class="monitor__top"><span>OR / LIVE</span><i></i></div>
+          <svg viewBox="0 0 520 120" aria-hidden="true"><path class="monitor__grid" d="M0 74H520"/><path id="ecgPath" class="monitor__ecg" d="M0 74H61l18-10 16 25 22-72 22 80 21-23h63l18-10 16 25 22-72 22 80 21-23h63l18-10 16 25 22-72 22 80 21-23h58"/></svg>
+          <div class="monitor__stats"><b>72<small>BPM</small></b><b>98<small>SpO₂</small></b><b>16<small>RR</small></b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter chapter--graduation" id="graduation" data-chapter="4">
+      <div class="chapter__sticky">
+        <div class="chapter__background chapter__background--graduation"></div>
+        <div class="chapter__wash"></div>
+        <div class="chapter__number">04</div>
+        <div class="chapter__content chapter__content--left">
+          <div class="chapter__meta"><span>THE OATH BEGINS</span><i></i><b>04</b></div>
+          <h2>کلاه‌ها بالا رفتند.<br><em>تعهد ماند.</em></h2>
+          <p>چند ثانیه شادی، برای سال‌هایی که پشت سر گذاشته شد. اما چیزی که از این روز می‌ماند، عنوان نیست؛ مسئولیتی است که تازه آغاز می‌شود.</p>
+          <div class="graduation-year"><span>CLASS OF</span><b>2026</b></div>
+        </div>
+        <figure class="portrait-card" data-tilt>
+          <img src="assets/graduation-portrait-960.webp" alt="پرتره فارغ التحصیلی دانشجوی پزشکی دانشگاه علوم پزشکی مازندران" />
+          <figcaption><span>MAZUMS / MEDICINE</span><b>نسل تازه پزشکان</b></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="finale" id="finale" data-chapter="5">
+      <div class="finale__halo" aria-hidden="true"></div>
+      <div class="finale__inner">
+        <div class="finale__eyebrow">THE STORY CONTINUES · MAZANDARAN</div>
+        <h2>پایان تحصیل،<br><em>شروع پزشک بودن.</em></h2>
+        <p>از همین دانشگاه، برای بیمارانی که هنوز ندیده‌ایم؛ با دانشی که آموخته‌ایم و مسئولیتی که انتخاب کرده‌ایم.</p>
+        <div class="finale__actions">
+          <a class="button button--gold" href="#cinematic">تماشای دوباره <span>↑</span></a>
+          <a class="button button--ghost" href="https://www.mazums.ac.ir/" target="_blank" rel="noreferrer">دانشگاه علوم پزشکی مازندران <span>↗</span></a>
+        </div>
+      </div>
+      <footer><span>MAZUMS · MEDICAL GRADUATION · 2026</span><span>SARI · MAZANDARAN · IRAN</span></footer>
+    </section>
+  </main>
+
+  <div class="cursor" id="cursor" aria-hidden="true"><i></i></div>
+  <noscript><div class="noscript">برای تجربه کامل این صفحه، JavaScript باید فعال باشد.</div></noscript>
+  <script src="src/main.js" defer></script>
+</body>
+</html>
